@@ -1,0 +1,9 @@
+build/*.o
+build/*.ali
+.Rhistory
+data*
+*~
+*#*
+src/*~
+src/*#
+src/#*
