@@ -28,5 +28,5 @@ Project Main is
      for VCS_Kind use "Git";
   end IDE;
   
-  for Main use ("ssa.adb");
+  for Main use ("stoch.adb");
 end Main;
