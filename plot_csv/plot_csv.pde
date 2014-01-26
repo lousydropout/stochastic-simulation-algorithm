@@ -12,7 +12,7 @@ void setup() {
   background(0);
   stroke(255);
   reader = createReader("../data.out");
-  frameRate(300);
+  frameRate(240);
 }
 
 void draw() {

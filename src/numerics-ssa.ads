@@ -1,5 +1,5 @@
 with Numerics.Real_Arrays; use Numerics.Real_Arrays;
-
+with Ada.Text_IO; use Ada.Text_IO;
 generic
 
    type Rxn_Range is range <>;
@@ -12,8 +12,18 @@ generic
    
 package Numerics.SSA is
    
+   procedure Print_CSV (File : in File_Type;
+			Item : in Natural_Vector);
+   
+   procedure Print_CSV (File : in File_Type;
+			τ    : in Real;
+			Item : in Natural_Vector) with Inline => True;
+   
    procedure Print_CSV (τ    : in Real;
 			Item : in Natural_Vector) with Inline => True;
+   
+   procedure Print_Header (File : in File_Type;
+			   Item : in Natural_Vector);
    
    procedure Print_Header (τ    : in Real;
 			   Item : in Natural_Vector) with Inline => True;
@@ -28,5 +38,7 @@ package Numerics.SSA is
 		     Time : in out Real);
    
    function Extinctp (Y	: in Natural_Vector) return Boolean;
-
+   
+   
+   EXTINCTION : exception;
 end Numerics.SSA;

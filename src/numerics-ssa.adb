@@ -6,18 +6,37 @@ package body Numerics.SSA is
    package Real_IO is new Ada.Text_IO.Float_IO (Real); use Real_IO;
    package Int_IO  is new Ada.Text_IO.Integer_IO (Integer); use Int_IO;
    
+   procedure Print_CSV (File : in File_Type;
+			τ    : in Real;
+			Item : in Natural_Vector) is
+   begin
+      Put (File, τ);
+      for I in Item'Range loop
+	 Put (File, ", ");
+	 Put (File, Item (I), Width => 0);
+      end loop;
+      New_Line (File);
+   end Print_CSV;
+   
+      
+   procedure Print_CSV (File : in File_Type;
+			Item : in Natural_Vector) is
+   begin
+      Put (File, Item (Item'First), Width => 0);
+      for I in Item'First + 1 .. Item'Last loop
+	 Put (File, ", ");
+	 Put (File, Item (I), Width => 0);
+      end loop;
+      New_Line (File);
+   end Print_CSV;
+   
+      
    procedure Print_CSV (τ    : in Real;
 			Item : in Natural_Vector) is
    begin
-      Put (τ);
-      for I in Item'Range loop
-	 Put (", ");
-	 Put (Item (I), Width => 0);
-      end loop;
-      New_Line;
+      Print_CSV (Standard_Output, τ, Item);
    end Print_CSV;
-   
-   
+
    
    procedure Print_Header (τ    : in Real;
 			   Item : in Natural_Vector) is
@@ -28,6 +47,18 @@ package body Numerics.SSA is
 	 Int_IO.Put (I, Width => 0);
       end loop;
       New_Line;
+   end Print_Header;
+   
+   
+   procedure Print_Header (File : in File_Type;
+			   Item : in Natural_Vector) is
+   begin
+      Put (File, "y1"); 
+      for I in Item'First + 1 .. Item'Last loop
+	 Put (File, ", y"); 
+	 Int_IO.Put (File, I, Width => 0);
+      end loop;
+      New_Line (File);
    end Print_Header;
    
    
@@ -46,7 +77,7 @@ package body Numerics.SSA is
 				 Y => Y);
       	 S (I) := A0;
       end loop;
-      τ   := Log (1.0 / Rand) / A0; -- Calculate τ 
+      τ   := Log (1.0 / (Rand + 1.0e-20)) / A0; -- Calculate τ 
       Tmp := Rand * A0; -- Calculate μ--
       for I in C'Range loop
       	 if Tmp <= S (I) then
@@ -70,7 +101,7 @@ package body Numerics.SSA is
       Y    := Y + ΔY (Rxn_Range (μ));
       --------------------------
       ------------------------------
-
+      if Extinctp (Y) then raise EXTINCTION; end if;
    end Update;
 
       
