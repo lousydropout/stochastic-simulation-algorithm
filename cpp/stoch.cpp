@@ -108,13 +108,10 @@ int main()
   for (int i = 1; i <= 1000; i++)
     {
       cout << "Iteration: " << i << endl;
-      /*** Reinitialization ********************/
+      /*** Initialization & Reinitialization ********************/
       counter = 0;
       time    = 0.0;
-      for (int n = 0; n < N_chem; n++)
-	{
-	  y[n] = y_0[n];
-	}
+      for (int n = 0; n < N_chem; n++) y[n] = y_0[n];
       /****************************************/
       
       while (time < t_final)
@@ -133,9 +130,7 @@ int main()
 	    {
 	      myfile[counter] << to_string(y[0]);
 	      for (int j = 1; j < N_chem; j++)
-		{
-		  myfile[counter] << ", " + to_string(y[j]);
-		}
+		myfile[counter] << ", " + to_string(y[j]);
 	      myfile[counter] << endl;
 	      counter += 1;
 	    }
