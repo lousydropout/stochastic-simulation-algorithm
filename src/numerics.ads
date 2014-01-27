@@ -5,5 +5,7 @@ package Numerics is
 
    function "+" (Left  : in Natural_Vector;
 		 Right : in Int_Vector) return Natural_Vector;
+   
+   function "+" (Left, Right : in String) return String;
 
 end Numerics;

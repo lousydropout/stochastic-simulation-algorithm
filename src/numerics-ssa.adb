@@ -62,10 +62,10 @@ package body Numerics.SSA is
    end Print_Header;
    
    
-   procedure Calc_TM (Y	: in     Natural_Vector;
-		      C	: in     Real_Vector;
-		      τ	:    out Real;
-		      μ	:    out Rxn_Range) is
+   procedure Calc_Tau_Mu (Y	: in     Natural_Vector;
+			  C	: in     Real_Vector;
+			  τ	:    out Real;
+			  μ	:    out Rxn_Range) is
       S   : Real_Vector (C'Range);
       A0  : Real := 0.0;
       Tmp : Real;
@@ -86,17 +86,17 @@ package body Numerics.SSA is
       	 end if;
       end loop;
       -----------------
-   end Calc_TM;
+   end Calc_Tau_Mu;
 
    
    procedure Update (Y	  : in out Natural_Vector;
 		     C	  : in     Real_Vector;
 		     Time : in out Real) is
       τ : Real;
-      μ : Natural;
+      μ : Rxn_Range;
    begin
       -- SSA ------------------
-      Calc_TM (Y => Y, C => C, τ => τ, μ => Rxn_Range (μ));
+      Calc_Tau_Mu (Y => Y, C => C, τ => τ, μ => μ);
       Time := Time + τ; 
       Y    := Y + ΔY (Rxn_Range (μ));
       --------------------------

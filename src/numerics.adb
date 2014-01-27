@@ -9,5 +9,17 @@ package body Numerics is
       end loop;
       return Result;
    end "+";
+   
+   function "+" (Left, Right : in String) return String is
+      Result : String (1 .. Left'Length + Right'Length);
+   begin
+      for I in Left'Range loop
+	 Result (I - Left'First + Result'First) := Left (I);
+      end loop;
+      for I in Right'Range loop
+	 Result (I - Right'First + Result'First + Left'Length) := Right (I);
+      end loop;
+      return Result;
+   end "+";
 
 end Numerics;

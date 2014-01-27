@@ -28,10 +28,12 @@ package Numerics.SSA is
    procedure Print_Header (τ    : in Real;
 			   Item : in Natural_Vector) with Inline => True;
      
-   procedure Calc_TM (Y	: in     Natural_Vector;
-		      C	: in     Real_Vector;
-		      τ	:    out Real;
-		      μ	:    out Rxn_Range);
+   procedure Calc_Tau_Mu (Y	: in     Natural_Vector;
+			  C	: in     Real_Vector;
+			  τ	:    out Real;
+			  μ	:    out Rxn_Range)
+     with Post => τ >= 0.0;
+   
    
    procedure Update (Y	  : in out Natural_Vector;
 		     C	  : in     Real_Vector;
