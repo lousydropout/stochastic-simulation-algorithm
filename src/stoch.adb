@@ -65,14 +65,15 @@ begin
    
    for I in T_Print'Range loop
       T_Print (I) := Real (I) * Δt;
-      --  Create (F_Print (I), Name => "data" + I'Img + ".csv");
-      --  Print_Header (F_Print (I), Y); -- Print Header
-      Open (F_Print (I), Mode => Append_File,
-      	    Name => "data" + I'Img + ".csv"); -- Create output file
+      Create (F_Print (I), Name => "data" + I'Img + ".csv");
+      Print_Header (F_Print (I), Y); -- Print Header
+      --  Open (F_Print (I), Mode => Append_File,
+      --  	    Name => "data" + I'Img + ".csv"); -- Create output file
    end loop;
    
    
-   for II in 1 .. 1_000 loop   
+   for J in 1 .. 1_000 loop   
+      Put ("Iteration: "); Put (J, 0); New_Line;
       Y := Y_0;
       Time := 0.0;
       Counter := 1;
