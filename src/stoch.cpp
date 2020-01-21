@@ -141,8 +141,8 @@ int main()
 	  for (int k = 0; k < N_chem; k++)
 	    {
 	      y[k] += delta[k];
-	      if (y[k] == 0.0) goto here;  // End path simulation if
-	                                   // any specie dies off
+	      if (y[k] < 1.0e-9) goto here;  // End path simulation if
+                                             // any specie dies off
 	    }
 	  /****************************************/
 	}
