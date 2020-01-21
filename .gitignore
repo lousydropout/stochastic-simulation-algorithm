@@ -1,5 +1,3 @@
-build/*.o
-build/*.ali
 .Rhistory
 data*
 *~
@@ -7,3 +5,5 @@ data*
 src/*~
 src/*#
 src/#*
+stoch
+*.csv
