@@ -1,4 +1,4 @@
-# Stochastic Simulation Algorithm
+# An Implementation of the Stochastic Simulation Algorithm
 
 This is an implementation of the *Stochastic Simulation Algorithm* (SSA) as outlined in Gillespie's paper, [*"Exact Simulation of Coupled Chemical Reactions."*](https://pubs.acs.org/doi/abs/10.1021/j100540a008)
 
